@@ -26,7 +26,7 @@ export default {
         const { latitude, longitude } = position.coords;
         this.lat = latitude;
         this.lng = longitude;
-      }); // TODO: Finish this logic
+      }); // TODO: Finish the Geolocation logic
     },
   },
 };
