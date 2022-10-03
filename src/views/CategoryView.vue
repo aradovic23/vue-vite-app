@@ -4,7 +4,7 @@
       <SkeletonLoader />
     </div>
     <div v-else>
-      <div class="my-3">
+      <div class="my-3" v-if="admin">
         <button
           @click="showForm"
           class="btn btn-secondary w-full"
@@ -75,9 +75,11 @@ import LoadingButton from "../components/LoadingButton.vue";
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import ToasterAlert from "../components/ToasterAlert.vue";
 import SkeletonLoader from "../common/SkeletonLoader.vue";
-
+import { useStore } from "@/store/user";
+import { mapState } from "pinia";
 export default {
   computed: {
+    ...mapState(useStore, ["admin", "displayName"]),
     id() {
       return this.$route.query.id;
     },

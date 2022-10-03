@@ -9,7 +9,10 @@
       </button>
     </div>
     <div>
-      <h5 class="font-bold text-primary">Digital Menu</h5>
+      <h5 class="font-bold text-primary" v-if="admin">
+        Admin: {{ displayName }}
+      </h5>
+      <h5 class="font-bold text-primary" v-else>Digital Menu</h5>
     </div>
     <div class="flex-none">
       <button
@@ -18,7 +21,8 @@
         data-act-class="activeClass"
         @click="setActiveTheme"
       >
-        <ArrowsRightLeftIcon class="h-4 w-4" /> Theme
+        <ArrowsRightLeftIcon class="h-3 mr-1" />
+        Theme
       </button>
     </div>
   </div>
@@ -27,6 +31,8 @@
 <script>
 import { themeChange } from "theme-change";
 import { ChevronLeftIcon, ArrowsRightLeftIcon } from "@heroicons/vue/24/solid";
+import { useStore } from "@/store/user";
+import { mapState } from "pinia";
 
 export default {
   methods: {
@@ -36,6 +42,9 @@ export default {
     onScroll() {
       this.windowTop = window.scrollY;
     },
+  },
+  computed: {
+    ...mapState(useStore, ["admin", "displayName"]),
   },
   mounted() {
     themeChange(false);

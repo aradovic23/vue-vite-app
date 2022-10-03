@@ -16,7 +16,7 @@
       <div class="card-actions justify-start">
         <button class="btn gap-2 btn-primary">{{ product.price }} RSD</button>
       </div>
-      <div class="card-actions">
+      <div class="card-actions" v-if="admin">
         <router-link
           :to="{
             name: 'editProduct',
@@ -38,12 +38,17 @@
 
 <script>
 import { TrashIcon, PencilIcon } from "@heroicons/vue/24/solid";
+import { useStore } from "@/store/user";
+import { mapState } from "pinia";
 
 export default {
   props: ["product", "categoryId"],
   components: {
     TrashIcon,
     PencilIcon,
+  },
+  computed: {
+    ...mapState(useStore, ["admin", "displayName"]),
   },
 };
 </script>

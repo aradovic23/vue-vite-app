@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="my-3">
+    <div class="my-3" v-if="admin">
       <button
         @click="showForm"
         class="btn btn-secondary w-full"
@@ -45,6 +45,9 @@
 <script>
 import CategoryCard from "../components/CategoryCard.vue";
 import LoadingButton from "../components/LoadingButton.vue";
+import { useStore } from "@/store/user";
+import { mapState } from "pinia";
+
 import {
   collection,
   getDocs,
@@ -74,6 +77,9 @@ export default {
       toasterVisible: null,
       toasterMessage: "",
     };
+  },
+  computed: {
+    ...mapState(useStore, ["admin", "displayName"]),
   },
   mounted() {
     this.fetchCategories();

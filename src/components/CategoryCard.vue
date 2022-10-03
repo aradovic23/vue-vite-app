@@ -3,7 +3,11 @@
     <div class="card-body">
       <h2 class="card-title capitalize">
         {{ category.name }}
-        <button @click="$emit('delete')" class="btn btn-secondary btn-xs">
+        <button
+          @click="$emit('delete')"
+          class="btn btn-secondary btn-xs"
+          v-if="admin"
+        >
           <TrashIcon class="h-4 w-4" /> Delete
         </button>
       </h2>
@@ -29,11 +33,16 @@
 </template>
 
 <script>
+import { useStore } from "@/store/user";
+import { mapState } from "pinia";
 import { TrashIcon } from "@heroicons/vue/24/solid";
 export default {
   props: ["category"],
   components: {
     TrashIcon,
+  },
+  computed: {
+    ...mapState(useStore, ["admin", "displayName"]),
   },
 };
 </script>

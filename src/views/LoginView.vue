@@ -27,6 +27,9 @@
       </div>
       <button class="btn btn-primary w-full" type="submit">Login</button>
     </form>
+    {{ user.admin }}
+    <br />
+    {{ user.displayName }}
   </div>
 </template>
 
@@ -34,7 +37,11 @@
 import { ref } from "vue";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useStore } from "@/store/user";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
+const user = useStore();
 const email = ref("");
 const password = ref("");
 const handleLogin = () => {
@@ -42,13 +49,14 @@ const handleLogin = () => {
   signInWithEmailAndPassword(auth, email.value, password.value)
     .then((userCredential) => {
       // Signed in
-      const user = userCredential.user;
-      console.log(user);
+      const data = userCredential.user;
+      user.setUser(data);
+      user.setDisplayName("Dejan");
+      router.push("/");
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
 };
-console.log(auth);
 </script>
