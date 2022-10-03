@@ -27,9 +27,6 @@
       </div>
       <button class="btn btn-primary w-full" type="submit">Login</button>
     </form>
-    {{ user.admin }}
-    <br />
-    {{ user.displayName }}
   </div>
 </template>
 
@@ -39,24 +36,28 @@ import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useStore } from "@/store/user";
 import { useRouter } from "vue-router";
+import ToasterAlert from "../components/ToasterAlert.vue";
 
 const router = useRouter();
 const user = useStore();
 const email = ref("");
 const password = ref("");
-const handleLogin = () => {
-  // TODO: Finish this..
-  signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {
-      // Signed in
-      const data = userCredential.user;
-      user.setUser(data);
-      user.setDisplayName("Dejan");
-      router.push("/");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+const handleLogin = async () => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email.value,
+      password.value
+    );
+    const data = userCredential.user;
+    user.setUser(data);
+    user.setDisplayName("Dejan");
+    router.push({ name: "home" });
+  } catch (error) {
+    // Signed in
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  }
 };
 </script>
