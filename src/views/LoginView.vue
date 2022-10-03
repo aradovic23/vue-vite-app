@@ -36,7 +36,6 @@ import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useStore } from "@/store/user";
 import { useRouter } from "vue-router";
-import ToasterAlert from "../components/ToasterAlert.vue";
 
 const router = useRouter();
 const user = useStore();
@@ -54,7 +53,6 @@ const handleLogin = async () => {
     user.setDisplayName("Dejan");
     router.push({ name: "home" });
   } catch (error) {
-    // Signed in
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorCode, errorMessage);

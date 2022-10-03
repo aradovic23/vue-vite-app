@@ -42,6 +42,17 @@
         v-model="product.price"
       />
     </div>
+    <div class="form-control max-w-lg">
+      <label class="label">
+        <span class="label-text">Image</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Image"
+        class="input input-bordered"
+        v-model="product.img"
+      />
+    </div>
     <div class="form-control max-w-lg mb-3">
       <label class="label">
         <span class="label-text">Type</span>
@@ -74,6 +85,7 @@ export default {
     return {
       toasterMessage: "",
       toasterVisible: null,
+      imageUrl: "",
     };
   },
   methods: {
@@ -90,6 +102,7 @@ export default {
         name: this.product.name || "",
         price: this.product.price || "",
         type: this.product.type || "",
+        img: this.product.img || "",
       };
 
       await updateDoc(docRef, updatedData);
