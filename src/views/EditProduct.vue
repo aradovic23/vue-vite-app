@@ -1,6 +1,6 @@
 <template>
   <div v-if="isLoading">
-    <LoadingButton />
+    <SkeletonLoader />
   </div>
   <div v-else>
     <EditProductCard
@@ -16,6 +16,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import LoadingButton from "../components/LoadingButton.vue";
 import EditProductCard from "../components/EditProductCard.vue";
+import SkeletonLoader from "../common/SkeletonLoader.vue";
 
 export default {
   computed: {
@@ -48,6 +49,6 @@ export default {
       }
     },
   },
-  components: { LoadingButton, EditProductCard },
+  components: { LoadingButton, EditProductCard, SkeletonLoader },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="isLoading" class="grid place-items-center h-screen">
-      <LoadingButton />
+    <div v-if="isLoading">
+      <SkeletonLoader />
     </div>
     <div v-else>
       <div class="my-3">
@@ -74,6 +74,7 @@ import ProductCard from "../components/ProductCard.vue";
 import LoadingButton from "../components/LoadingButton.vue";
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import ToasterAlert from "../components/ToasterAlert.vue";
+import SkeletonLoader from "../common/SkeletonLoader.vue";
 
 export default {
   computed: {
@@ -153,6 +154,12 @@ export default {
       }
     },
   },
-  components: { ProductCard, LoadingButton, PlusIcon, ToasterAlert },
+  components: {
+    ProductCard,
+    LoadingButton,
+    PlusIcon,
+    ToasterAlert,
+    SkeletonLoader,
+  },
 };
 </script>

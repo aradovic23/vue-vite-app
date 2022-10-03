@@ -24,8 +24,8 @@
         <button class="btn btn-primary w-full" type="submit">Submit</button>
       </form>
     </div>
-    <div v-if="isLoading" class="grid place-items-center h-screen">
-      <LoadingButton />
+    <div v-if="isLoading">
+      <SkeletonLoader />
     </div>
     <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       <h1 class="text-2xl mb-2 font-bold">Categories</h1>
@@ -55,6 +55,7 @@ import {
 import { db } from "../firebase";
 import ToasterAlert from "../components/ToasterAlert.vue";
 import { PlusIcon } from "@heroicons/vue/24/solid";
+import SkeletonLoader from "../common/SkeletonLoader.vue";
 
 export default {
   components: {
@@ -62,6 +63,7 @@ export default {
     LoadingButton,
     ToasterAlert,
     PlusIcon,
+    SkeletonLoader,
   },
   data() {
     return {
