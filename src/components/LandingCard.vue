@@ -9,17 +9,28 @@
     </figure>
     <div class="card-body items-center text-center">
       <h2 class="card-title">Landing page</h2>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. In illo quos
-        velit sunt, qui eaque minima mollitia saepe adipisci eveniet sapiente
-        quam fugiat dolores praesentium! Excepturi sequi repellat exercitationem
-        at.
-      </p>
-      <div class="card-actions">
-        <router-link to="/home"
-          ><button class="btn btn-primary">Go Home</button></router-link
-        >
+      <p>Distance from the bar: {{ distance }}m</p>
+
+      <div v-if="distance <= 50">
+        <div class="card-actions">
+          <router-link to="/home"
+            ><button class="btn btn-primary">Go Home</button></router-link
+          >
+        </div>
+      </div>
+      <div v-else>
+        <div class="badge badge-error">Please enable location and refresh</div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    distance: {
+      type: String,
+    },
+  },
+};
+</script>

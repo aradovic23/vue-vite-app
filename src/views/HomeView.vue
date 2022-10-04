@@ -27,13 +27,15 @@
     <div v-if="isLoading">
       <SkeletonLoader />
     </div>
-    <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div v-else>
       <h1 class="text-2xl mb-2 font-bold">Categories</h1>
-      <div v-for="category in categories" :key="category.id">
-        <CategoryCard
-          :category="category"
-          @delete="deleteCategory(category.id, category.name)"
-        />
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div v-for="category in categories" :key="category.id">
+          <CategoryCard
+            :category="category"
+            @delete="deleteCategory(category.id, category.name)"
+          />
+        </div>
       </div>
     </div>
   </div>
