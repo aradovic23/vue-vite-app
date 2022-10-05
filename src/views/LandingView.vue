@@ -1,6 +1,6 @@
 <template>
   <div class="grid place-items-center h-screen">
-    <LandingCard :distance="distance" />
+    <LandingCard />
   </div>
 </template>
 

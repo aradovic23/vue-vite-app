@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
 import MainHeader from "./components/MainHeader.vue";
-import { useStore } from "./store/distance";
+import { mapState } from "pinia";
+import { useCurrentDistance } from "./store/distance";
 import LandingCard from "./components/LandingCard.vue";
 import { getDistance } from "./helpers/useLocation.js";
 
@@ -18,17 +18,16 @@ export default {
     isLanding() {
       return this.$route.name === "landing";
     },
-    // ...mapState(useStore, ["distance"]),
+    ...mapState(useCurrentDistance, ["currentDistance", "isLoading"]),
   },
-  created() {
-    setTimeout(() => {
-      this.geoLocation();
-    }, 4000);
+  mounted() {
+    this.geoLocation();
   },
   methods: {
-    geoLocation() {
-      const distance = getDistance();
-      console.log(distance);
+    async geoLocation() {
+      const distance = await getDistance();
+      const store = useCurrentDistance();
+      store.setCurrentDistance(distance);
     },
   },
 };

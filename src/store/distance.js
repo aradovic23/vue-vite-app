@@ -1,10 +1,17 @@
 import { defineStore } from "pinia";
 
-export const useStore = defineStore("distance", {
-  state: () => ({ currentDistance: null }),
+export const useCurrentDistance = defineStore("distance", {
+  state: () => ({ currentDistance: null, isLoading: null }),
+  getters: {
+    isHere(state) {
+      return state.currentDistance <= 50;
+    },
+  },
   actions: {
-    setCurrentDistance(payload) {
-      this.currentDistance = payload;
+    async setCurrentDistance(payload) {
+      this.isLoading = true;
+      this.currentDistance = await payload;
+      this.isLoading = false;
     },
   },
 });

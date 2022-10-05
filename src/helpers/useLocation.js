@@ -17,38 +17,28 @@ const toRad = (Value) => {
   return (Value * Math.PI) / 180;
 };
 
-export const getDistance = () => {
-  let distance = null;
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        const coords2 = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
+const getCoordinates = () => {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
 
-        // location coords
-        const coords1 = {
-          lat: 45.2624726,
-          lng: 19.848644,
-        };
+export const getDistance = async () => {
+  const position = await getCoordinates();
 
-        const calculateDistance = calcCrow(coords1, coords2);
-        const roundedDistance = calculateDistance.toFixed(2);
-        console.log(roundedDistance);
-        distance = roundedDistance;
-        console.log(distance);
-      },
-      function (error) {
-        alert(error.message);
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 5000,
-      }
-    );
-  } else {
-    alert("Geolocation is not supported by this browser.");
-  }
-  return { distance };
+  const coords2 = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude,
+  };
+  // location coords
+  const coords1 = {
+    lat: 44.68670524777419,
+    lng: 20.381842999712696,
+  };
+
+  const calculateDistance = calcCrow(coords1, coords2);
+  const roundedDistance = calculateDistance.toFixed(2);
+  const distance = roundedDistance;
+
+  return distance;
 };

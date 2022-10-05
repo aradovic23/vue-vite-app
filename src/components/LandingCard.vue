@@ -8,29 +8,42 @@
       />
     </figure>
     <div class="card-body items-center text-center">
-      <h2 class="card-title">Landing page</h2>
-      <p>Distance from the bar: {{ distance }}m</p>
+      <div class="flex items-center flex-col gap-2">
+        <h2 class="card-title">Welcome!</h2>
+        <p class="text-sm">Make sure to enable to location service</p>
+      </div>
 
-      <div v-if="distance <= 50">
+      <div>
         <div class="card-actions">
-          <router-link to="/home"
-            ><button class="btn btn-primary">Go Home</button></router-link
+          <router-link to="/home" v-if="currentDistance && isHere"
+            ><button class="btn btn-primary">Enter</button></router-link
           >
+          <div v-else><LoadingButton /></div>
         </div>
       </div>
-      <div v-else>
-        <div class="badge badge-error">Please enable location and refresh</div>
+      <div v-if="currentDistance && isHere">
+        <div class="badge badge-warning">
+          Distance from: {{ currentDistance }}
+          {{ isHere }}
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from "pinia";
+import { useCurrentDistance } from "../store/distance";
+import LoadingButton from "./LoadingButton.vue";
+import { InformationCircleIcon } from "@heroicons/vue/24/solid";
+
 export default {
-  props: {
-    distance: {
-      type: String,
+  computed: {
+    ...mapState(useCurrentDistance, ["currentDistance", "isLoading"]),
+    isHere() {
+      return this.currentDistance <= 50;
     },
   },
+  components: { LoadingButton, InformationCircleIcon },
 };
 </script>
