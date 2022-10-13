@@ -15,13 +15,13 @@
 
       <div>
         <div class="card-actions">
-          <router-link to="/home" v-if="currentDistance && isHere"
+          <router-link to="/home" v-if="isHere"
             ><button class="btn btn-primary">Enter</button></router-link
           >
           <div v-else><LoadingButton /></div>
         </div>
       </div>
-      <div v-if="currentDistance && isHere">
+      <div v-if="isHere">
         <div class="badge badge-warning">
           Distance from: {{ currentDistance }}
           {{ isHere }}
