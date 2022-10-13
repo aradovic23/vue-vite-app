@@ -5,7 +5,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import MainHeader from "./components/MainHeader.vue";
 import { mapState } from "pinia";
 import { useCurrentDistance } from "./store/distance";
