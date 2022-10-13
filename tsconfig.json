@@ -2,6 +2,7 @@
     "compilerOptions": {
       "target": "esnext",
       "module": "esnext",
+      "lib": ["dom", "es5", "es6"],
       "types": ["vite/client"],
       "moduleResolution": "node",
       "importHelpers": true,
@@ -14,3 +15,4 @@
        }
      }
   }
+  

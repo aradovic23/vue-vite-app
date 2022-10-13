@@ -51,6 +51,7 @@
             :product="product"
             :categoryId="id"
             @delete="deleteProduct(product.id, product.name)"
+            :categoryName="categoryName"
           />
         </div>
       </div>
@@ -100,6 +101,7 @@ export default {
   },
   mounted() {
     this.fetchProducts();
+    this.changePageTitle();
   },
   methods: {
     async fetchProducts() {
@@ -154,6 +156,10 @@ export default {
           this.toasterMessage = "";
         }, 1000);
       }
+    },
+    changePageTitle() {
+      const meta = this.$route.meta.title;
+      document.title = `${meta} - ${this.categoryName}` || meta;
     },
   },
   components: {

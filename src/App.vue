@@ -10,7 +10,7 @@ import MainHeader from "./components/MainHeader.vue";
 import { mapState } from "pinia";
 import { useCurrentDistance } from "./store/distance";
 import LandingCard from "./components/LandingCard.vue";
-import { getDistance } from "./helpers/useLocation.js";
+import { getDistance } from "./hooks/useLocation.js";
 
 export default {
   components: { MainHeader, LandingCard },

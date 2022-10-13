@@ -42,7 +42,7 @@ import { useStore } from "@/store/user";
 import { mapState } from "pinia";
 
 export default {
-  props: ["product", "categoryId"],
+  props: ["product", "categoryId", "categoryName"],
   components: {
     TrashIcon,
     PencilIcon,
