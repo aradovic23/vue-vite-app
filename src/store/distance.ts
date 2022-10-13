@@ -8,9 +8,9 @@ export const useCurrentDistance = defineStore("distance", {
     },
   },
   actions: {
-    async setCurrentDistance(payload) {
+    async setCurrentDistance(payload: number) {
       this.isLoading = true;
-      this.currentDistance = await payload;
+      this.currentDistance =  payload;
       this.isLoading = false;
     },
   },

@@ -3,10 +3,10 @@ import { defineStore } from "pinia";
 export const useStore = defineStore("user", {
   state: () => ({ admin: null, displayName: null }),
   actions: {
-    setUser(payload) {
+    setUser(payload: string) {
       this.admin = payload;
     },
-    setDisplayName(payload) {
+    setDisplayName(payload: string) {
       this.displayName = payload;
     },
   },
