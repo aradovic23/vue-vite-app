@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { mapState } from "pinia";
 import { useCurrentDistance } from "../store/distance";
 import LoadingButton from "./LoadingButton.vue";
